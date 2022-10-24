@@ -1,5 +1,15 @@
 package com.cervantes.app.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="usuarios",schema ="clubcervantes")
 public class User {
 	public User() {
 
@@ -7,7 +17,7 @@ public class User {
 
 	
 
-	public User(String userId, String name, String surname, int document, String password, String email, int phone) {
+	public User(Integer userId, String name, String surname, int document, String password, String email, int phone) {
 		super();
 		this.userId = userId;
 		this.name = name;
@@ -19,15 +29,25 @@ public class User {
 	}
 
 
-
-	private String userId;
+	@Id
+	@Column(name="userId")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	private Integer userId;	
+	
 	private String name;
 	private String surname;
 	private int document;
 	private String password;
 	private String email;
 	private int phone;
-
+	   
+	
+	public Integer getUserId() {
+        return userId;
+    }
+	public void setUserId(Integer id) {
+		this.userId = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -75,17 +95,14 @@ public class User {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
+	
 
 
 
-	public String getUserId() {
-		return userId;
-	}
-
-
-
-	public void setUserId(String userId) {
-		this.userId = userId;
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", name=" + name + ", surname=" + surname + ", document=" + document
+				+ ", password=" + password + ", email=" + email + ", phone=" + phone + "]";
 	}
 	
 
