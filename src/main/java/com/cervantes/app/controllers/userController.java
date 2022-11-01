@@ -32,8 +32,9 @@ public class userController {
 	        }
 	    }
 	    @PostMapping("/")
-	    public void add(@RequestBody User user) {
+	    public String add(@RequestBody User user) {
 	        userServiceImpl.saveUser(user);
+	        return "Usuario generado correctamente";
 	    }
 	    @PutMapping("/{id}")
 	    public ResponseEntity<?> update(@RequestBody User user, @PathVariable Integer id) {
@@ -47,9 +48,11 @@ public class userController {
 	        }
 	    }
 	    @DeleteMapping("/{id}")
-	    public void delete(@PathVariable Integer id) {
+	    public String delete(@PathVariable Integer id) {
 
 	        userServiceImpl.deleteUser(id);
+	        
+	        return "Usuario eliminado";
 	    }
 	
 
